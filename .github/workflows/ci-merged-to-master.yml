@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  publish:
+    name: Code Publish
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: 
+          - deploy
+    steps:
+      - uses: actions/checkout@master
+      - name: git fetch
+        run: |
+          git fetch
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '281.0.0'
+          service_account_email: ${{ secrets.GCP_DEV_SA }}
+          service_account_key: ${{ secrets.GCP_DEV_KEY }}
+          export_default_credentials: true
+      - name: docker login
+        run: |
+          echo "${{ secrets.GCP_DEV_KEY }}" | base64 --decode | \
+          docker login -u _json_key --password-stdin https://eu.gcr.io
+      - name: Publish
+        run: |
+          make -C ${{ matrix.service }} publish ENVIRONMENT=dev  
