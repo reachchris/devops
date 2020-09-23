@@ -64,7 +64,13 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
-
+    - name: Export Google Credentials
+      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+       version: '281.0.0'
+       service_account_email: ${{ secrets.GCP_DEV_SA }}
+       service_account_key: ${{ secrets.GCP_DEV_KEY }}
+       export_default_credentials: true
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -77,8 +83,6 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_DEV_KEY }}
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
