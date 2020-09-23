@@ -97,4 +97,3 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply ./plan.txt -auto-approve
-      working-directory: "deployerDemo/devops/terraform"
