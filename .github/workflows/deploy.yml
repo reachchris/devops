@@ -73,7 +73,9 @@ jobs:
       
     - name: Validate Terraform Credentials (Windows)
       run: |
-         mv deployerDemo/devops/terraform/* .
+         pwd
+         find . -name "main.tf"
+         mv devops/terraform/* .
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
