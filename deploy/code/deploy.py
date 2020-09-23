@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import os
 app = Flask(__name__)
 cricket_equiments = [
     {'id': 0,
@@ -53,4 +54,4 @@ def api_name():
       return jsonify(results)
 
 if __name__ == '__main__':
-   app.run(host ='0.0.0.0', port = 5001, debug = True)
+   app.run(host ='0.0.0.0', port=os.getenv('PORT'), debug = True)

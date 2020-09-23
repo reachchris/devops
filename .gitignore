@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+terraform/.terraform/*
+terraform/output.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
