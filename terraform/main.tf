@@ -7,7 +7,7 @@ provider "google" {
 terraform {
   required_version = ">= 0.13"
   backend "gcs" {
-    bucket  = "deployer-demo"
-    prefix    = "terraform-state/terraform.tfstate"
+    bucket = "deployer-demo"
+    prefix = "terraform-state/terraform.tfstate"
   }
 }
