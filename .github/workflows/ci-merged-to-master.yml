@@ -1,4 +1,4 @@
-name: CI
+name: CI on Merged to Master
 on:
   push:
     branches: [ master ]
@@ -44,4 +44,4 @@ jobs:
      - name: Notify Developer
        uses: wei/curl@master
        with:
-        args: https://demo-api-6r6nk5qgyq-ew.a.run.app/api/v1/notify/user  
+        args: "{{ secrets.NOTIFY_CHANNEL_EP }}"
