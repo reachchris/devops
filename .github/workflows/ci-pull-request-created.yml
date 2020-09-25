@@ -46,4 +46,4 @@ jobs:
      - name: Notify Developer
        uses: wei/curl@master
        with:
-        args: "{{ secrets.DEV_NOTIFY_EP }}"
+        args: "${{ secrets.DEV_NOTIFY_EP }}"
