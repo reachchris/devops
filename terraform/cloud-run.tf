@@ -21,6 +21,12 @@ resource "google_cloud_run_service" "demo-api" {
         image = data.google_container_registry_image.demo-api.image_url
       }
     }
+    dynamic "env" {
+        content {
+            name  = PROJECT_ID
+            value = var.project-id 
+        }
+    }
   }
 }
 
