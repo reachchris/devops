@@ -2,7 +2,11 @@ name: 'Deploy To Cloud Run'
 
 on:
   push:
+    branches-ignore:
+      - '**'
   pull_request:
+    branches-ignore:
+      - '**'
 
 jobs:
   terraform:
